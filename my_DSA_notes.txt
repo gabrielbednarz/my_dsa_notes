@@ -12,9 +12,11 @@ All recursive algorithms use implicit stack.
 BIG O NOTATION
 --------------
 
-A nested for loop has a complexity of O(n**2), but it could also be O(n*m) if the loops have different lengths. A single for loop has a complexity of O(n), which can be expressed as O(1)*n. Constants and parameters that are constant are typically ignored.
+A nested for loop has a complexity of O(n**2), but it could also be O(n*m) if the loops have different lengths. A single for loop has a complexity of O(n), 
+which can be expressed as O(1)*n. Constants and parameters that are constant are typically ignored.
 
-List comprehension - O(n). Functions like max() and min() have a complexity of O(n). The naive fib() function has a complexity of O(2**n) because each calculation in the recursive step invokes two more calculations. If four calculations were invoked, the complexity would be O(4**n).
+List comprehension - O(n). Functions like max() and min() have a complexity of O(n). The naive fib() function has a complexity of O(2**n) because each 
+calculation in the recursive step invokes two more calculations. If four calculations were invoked, the complexity would be O(4**n).
 
 
 O(log2(n)) example:
@@ -62,7 +64,8 @@ Note. element[:-1] - this operation takes O(k) time in the worst case, as it cre
 
 4 - When you concatenate the two lists with A + B, you create a completely new list in memory. Python has to walk both lists in turn to build the new list.
 
-10 - Strings are immutable. Thus, the only thing you can do is create a modified copy of a string value, which means copying all the characters you don't want to remove. Any such operation is inherently a O(n) operation. string[:-1] doesn't remove the last character; it copies all but the last character.
+10 - Strings are immutable. Thus, the only thing you can do is create a modified copy of a string value, which means copying all the characters you don't want 
+to remove. Any such operation is inherently a O(n) operation. string[:-1] doesn't remove the last character; it copies all but the last character.
 
 Time complexity: nlog2(n) + mlog2(m) + (n+m)k.
 
@@ -104,7 +107,8 @@ DATA STRUCTURES
 
 NOTE
 
-Every tree is a graph, but not every graph is a tree. Every linked list is a special type of tree (specifically, a degenerate tree), but not every tree is a linked list. Every heap is a specialized tree (binary or otherwise), but not every tree is a heap.
+Every tree is a graph, but not every graph is a tree. Every linked list is a special type of tree (specifically, a degenerate tree), but not every tree 
+is a linked list. Every heap is a specialized tree (binary or otherwise), but not every tree is a heap.
 _______________________________________________________________________________________________________
 
 
