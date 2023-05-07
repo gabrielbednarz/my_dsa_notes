@@ -108,4 +108,385 @@ Every tree is a graph, but not every graph is a tree. Every linked list is a spe
 _______________________________________________________________________________________________________
 
 
+Data structure is a named location that can be used to store and organize data. Simply put, an ADT (Abstract Data Type) is a logical description, while a data structure is a concrete implementation of an ADT.
+_______________________________________________________________________________________
+
+
+~~~~~~~~~~~~~~~~~~~~~~
+LINEAR DATA STRUCTURES
+~~~~~~~~~~~~~~~~~~~~~~
+
+Traversered sequentially with a single run. 
+
+
+------
+ARRAYS
+------
+
+STORAGE VS. MEMORY. Data in storage is permanent, while data in memory (RAM) is temporary. Both are used because retrieving data from storage is slower than from memory.
+
+Each integer is typically represented by 32 bits or, in some environments, 64 bits.
+
+Memory is a sequence of bytes (8 bits), which can be thought of as compartments. Each compartment has an address represented by an integer.
+
+You can't just allocate more memory to the existing array. If you do that, the new array has to be created with your added elements, the rest will be copied one by one DYNAMICALLY.
+
+
+
+
+------
+STACKS
+------
+
+As plates. Or pancakes. Add to the top only. Retrieve from the top only.
+
+This follows the Last-In, First-Out (LIFO) principle. Stacks can be implemented using an array with a pointer pointing to the last element. When pushing an element onto the stack, the pointer is incremented by 1, and when popping an element, the pointer is decremented by 1.
+
+You can implement the push operation using various approaches, such as inserting at the 0th index, which has an O(n) time complexity, or inserting at the -1 index, or simply using the .append method. In the last approach, elements are popped and added/inserted at the last index (-1), because the top of the stack is at the end of the array (i.e., a list).
+
+.append is an amortized O(1). Inserting at the 0th index of a list requires shifting every other element, making it an O(n) operation. However, if you use a deque, this operation is O(1). .append is an amortized O(1) operation since it simply requires adding the item onto the end of the list and no shifting is done. Sometimes the list needs to grow, so it is not always an O(1) operation.
+
+It is O(1) to pop the last element of a Python list, and O(n) to pop an arbitrary element (since the rest of the list has to be shifted).
+
+Stacks can be used to reverse a string, following the LIFO or FILO principle. They are also used in expression evaluation, expression conversion, and the Tower of Hanoi algorithm.
+
+Stack operations:
+
+.append()
+.pop()
+stack[-1] - the peek operation
+
+
+
+
+
+STACK USING LIST
+
+n = int(input("Enter the maximum size of your stack: "))
+stack =[]
+
+def push():
+    if len(stack) == n:
+        print("The stack is full!")
+    else:
+        element = input("Enter the element: ")
+        stack.append(element)
+        print(stack)
+
+def pop_element():
+    if not stack:
+        print("Stack is empty.")
+    else:
+        e = stack.pop()
+        print("Removed element:", e)
+        print(stack)
+
+while True:
+    print("Select the operation: 1 - push, 2 - pop, 3 - quit.")
+    choice = int(input())
+    if choice == 1:
+        push()
+    elif choice == 2:
+        pop_element()
+    elif choice == 3:
+        break
+    else:
+        print("Type correct number.")
+
+
+
+
+STACKS USING COLLECTIONS AND QUEUE
+
+
+import collections
+
+stack = collections.deque()
+print(stack)
+stack.append(78)
+stack[-1]
+stack.append(78)
+stack.pop()
+print(not stack)  # False.
+
+
+import queue
+
+stack = queue.LifoQueue(3)  # Optional argument for maximum number of elements.
+stack.put(234)
+stack.put(234)
+stack.put(5555)
+stack.put(5555, timeout=2)  # This line produces exception raise Full after 2 seconds.
+print(stack.get())
+print(stack.get())
+print(stack.get())
+print(stack)
+
+
+
+
+
+
+
+
+-----
+QUEUE
+-----
+
+
+import collections
+
+q = collections.deque()
+q.appendleft(2)
+q.appendleft(89)
+print(q)
+q.appendleft(123)
+print(q.pop())
+q.append(777)
+print(q)
+q.popleft()
+q.pop()
+print(q)
+
+
+
+
+import queue
+
+q = queue.Queue()
+q.put(5655)  # .append()
+q.put(11)
+q.put(1)
+
+print(q.queue)
+print(list(q.queue))
+print(q)  # .pop()
+print(q.get())
+print(q.get())
+print(q.queue)
+print(list(q.queue))
+
+
+Output:
+deque([5655, 11, 1])
+[5655, 11, 1]
+<queue.Queue object at...>
+5655
+11
+deque([1])
+[1]
+
+
+
+
+E.g. uploading documents, printing images.
+
+POSSIBLE CONCEPT
+
+For a string of length n, you can have at most n-1 objects. In this case, dequeue and enqueue operations are O(1).
+
+Two pointers are used. The queue is considered empty only when both pointers are at the same index. Initially, both pointers are at the same index. The left pointer points to the front of the queue, and the right pointer points to the back, but its index is len(n), which is beyond the last element. In this interpretation, the push/add method is equivalent to inserting an element at the end of the list (index -1). Therefore, the end of the list represents the end of the queue.
+
+In this case, dequeue is simply moving the left pointer one step to the right. The queue is only between the pointers.
+
+If you run out of space, you can concatenate the list and move the right pointer from index -1, which is empty, to index 0, which is the beginning of the list.
+
+
+
+
+DEQUE
+
+In a queue, you add an element to the end and remove it from the beginning, while in a deque, you can add and remove elements from both the beginning and the end of the queue (e.g., someone resigns because they have been waiting too long).
+
+Circular implementation is used in deque. The difference is in the pointer movements; in addition to remove_left and add_right, there are remove_right and add_left operations (someone pushes to the front of the queue, meaning insert at index 0). Similar to the previous implementation, all operations are O(1).
+
+
+
+PRIORITY QUEUE
+
+A priority queue is used when elements with higher priority need to be processed before elements with lower priority, like a person with a critical condition being prioritized.
+
+Priority can be determined by the content (using the < relation) or as a tuple. You can also use heapq.
+
+import queue
+q = queue.PriorityQueue()
+q.put(12)
+q.put(10898002)
+q.put(112342)
+q.put(1002)  # Maintains the min-heap property.
+q.put(100)
+print(q.queue)  # Output: [12, 100, 112342, 10898002, 1002].
+print(q.get())  # .pop(0)
+
+
+Tuple priority method:
+
+q = []
+q.append((1, 'alexa'))
+q.append((4, 'alex'))
+q.append((2, 'al'))
+print(q)  # [(1, 'alexa'), (4, 'alex'), (2, 'al')]
+q.sort(reverse=True)
+print(q)  # [(4, 'alex'), (2, 'al'), (1, 'alexa')]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------
+LINKED LISTS
+------------
+
+
+
+# Singly linked list.
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.ref = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def print_ll(self):
+        if self.head is None:
+            print('This list is empty.')
+        else:
+            n = self.head
+            while n is not None:
+                print(n.data, '-->>', end=' ')
+                n = n.ref
+            print('\n')
+
+    def add_begin(self, data):
+        new_node = Node(data)
+        new_node.ref = self.head
+        self.head = new_node
+
+    def add_end(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+        else:
+            n = self.head
+            while n.ref is not None:
+                n = n.ref
+            n.ref = new_node
+
+    def add_after(self, new_data, id_data):
+        n = self.head
+        while n is not None:
+            if id_data == n.data:
+                break
+            n = n.ref
+        if n is None:
+            print("The node is not present in the list or the list is empty")
+        else:
+            new_node = Node(new_data)
+            new_node.ref = n.ref
+            n.ref = new_node
+
+    def add_before(self, new_data, id_data):
+        if self.head is None:
+            orint("The list is empty.")
+
+        if self.head.data == id_data:
+            new_node = Node(data)
+            new_node.ref = self.head
+            self.head = new_node
+
+        n = self.head
+        while n.ref is not None:
+            if n.ref.data == id_data:
+                break
+            n = n.ref
+        if n.ref is None:
+            print("Node is not found")
+        new_node = Node(new_data)
+        new_node.ref = n.ref
+        n.ref = new_node
+
+    def insert_empty(self, new_data):
+        if self.head is None:
+            new_node = Node(new_data)
+            self.head = new_node
+        else:
+            print("Linked list is not empty.")
+
+    def delete_begin(self):
+        if self.head is None:
+            print("Linked list is empty.")
+        else:
+            self.head = self.head.ref
+
+    def delete_end(self):
+        if self.head is None:
+            print('Your linked lists is empty.')
+        elif self.head.ref is None:
+            self.head = None
+        else:
+            n = self.head
+            while n.ref.ref is not None:
+                n = n.ref
+            n.ref = None
+
+    def delete_by_value(self, id_data):
+        if self.head is None:
+            print("This list is empty.")
+        elif self.head.data == id_data:
+            self.head = self.head.ref
+        else:
+            n = self.head
+            while n.ref is not None:
+                if n.ref.data == id_data:
+                    break
+                n = n.ref
+            if n.ref is None:
+                print("The chosen node is not present.")
+            else:
+                n.ref = n.ref.ref
+
+
+ll1 = LinkedList()
+ll1.add_begin(10)
+ll1.add_end(100)
+ll1.add_begin(20)
+print(ll1.head)
+print(ll1.head.ref.ref.ref)
+ll1.print_ll()
+ll1.add_after('KKKKKKKKKKKK', 10)
+ll1.print_ll()
+ll1.add_before('ZZOZOOZ', 10)
+ll1.print_ll()
+ll1.delete_begin()
+ll1.print_ll()
+ll1.delete_end()
+ll1.print_ll()
+ll1.delete_by_value('DDDDDDOZ')
+ll1.print_ll()
+
+
+
+
+
+
+
+
+
+
 
