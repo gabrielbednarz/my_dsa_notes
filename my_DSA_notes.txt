@@ -88,8 +88,8 @@ Built-in functions:
 Function                    Worst-case time
 
 a.insert(i, x)	            n - i
-a.pop(i)	                n - i
-del a[i]	                n - i
+a.pop(i)	             n - i
+del a[i]	             n - i
 del a[i:j]                  n - i
 a.remove(x)                 n
 a.index(x)                  n
