@@ -1,0 +1,111 @@
+---------
+RECURSION
+---------
+
+fib(n) is of exponential complexity, thus use dynamic programming. Bottom-up approach.
+
+All recursive algorithms use implicit stack.
+
+
+
+--------------
+BIG O NOTATION
+--------------
+
+A nested for loop has a complexity of O(n**2), but it could also be O(n*m) if the loops have different lengths. A single for loop has a complexity of O(n), which can be expressed as O(1)*n. Constants and parameters that are constant are typically ignored.
+
+List comprehension - O(n). Functions like max() and min() have a complexity of O(n). The naive fib() function has a complexity of O(2**n) because each calculation in the recursive step invokes two more calculations. If four calculations were invoked, the complexity would be O(4**n).
+
+
+O(log2(n)) example:
+def ex(n):
+    if n==0: return
+    print(n)
+    ex(round(n/2))
+
+If ex(round(n/5)), then T = O(log5(n)).
+
+
+Another example:
+def ex(strings):
+    for i, string in enumerate(strings):
+        digits = 0
+        for char in string: 
+            if char in [str(n) for n in range(10)]:
+                digits += 1
+        if digits >= len(string) / 2:
+            strings[i] = sorted(strings[i])
+            strings[i] = ''.join(strings[i])
+    return strings
+
+n: number of strings
+k: maximum string length
+k*log2(k): due to the use of sorted()
+
+Thus, the worst case is: n*(k+klog2(k)) = n(k(1+log2(k))). We remove the constant 1. Therefore, the time complexity is nklog2(k). Worst case.
+
+
+Another one:
+1 def ex(dict1, dict2):                    # 1
+2     keys1 = sorted(dict1.keys())         # nlog2(n) 
+3     keys2 = sorted(dict2.keys())         # mlog2(m)
+4     process = keys1 + keys2              # n+m
+5     results = []                         # 1
+6     while len(process) > 0:              # (n+m)k; k - key string length
+7         element = process.pop(0)         # n+m - this shifts elements (Python)
+8         results.append(element)          # amortized O(1)
+9         if len(element) == 1: continue
+10        process.append(element[:-1])     # k
+11    return results
+
+Note. element[:-1] - this operation takes O(k) time in the worst case, as it creates a new string from the original one, excluding the last character.
+
+4 - When you concatenate the two lists with A + B, you create a completely new list in memory. Python has to walk both lists in turn to build the new list.
+
+10 - Strings are immutable. Thus, the only thing you can do is create a modified copy of a string value, which means copying all the characters you don't want to remove. Any such operation is inherently a O(n) operation. string[:-1] doesn't remove the last character; it copies all but the last character.
+
+Time complexity: nlog2(n) + mlog2(m) + (n+m)k.
+
+
+Another example:
+def ex(n):
+    if n == 1: return 1
+    total = 0
+    for _ in range(n):
+        total += ex(n - 1)
+    return total
+
+Time complexity: O(n!).
+
+
+
+Built-in functions:
+
+
+Function                    Worst-case time
+
+a.insert(i, x)	          n - i
+a.pop(i)	                n - i
+del a[i]	                n - i
+del a[i:j]                  n - i
+a.remove(x)                 n
+a.index(x)                  n
+
+Note: a.append(x) takes constant amortized time, even though the worst-case time is linear.
+
+
+
+~~~~~~~~~~~~~~~
+---------------
+DATA STRUCTURES
+---------------
+~~~~~~~~~~~~~~~
+
+
+NOTE
+
+Every tree is a graph, but not every graph is a tree. Every linked list is a special type of tree (specifically, a degenerate tree), but not every tree is a linked list. Every heap is a specialized tree (binary or otherwise), but not every tree is a heap.
+_______________________________________________________________________________________________________
+
+
+
