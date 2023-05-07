@@ -112,7 +112,8 @@ is a linked list. Every heap is a specialized tree (binary or otherwise), but no
 _______________________________________________________________________________________________________
 
 
-Data structure is a named location that can be used to store and organize data. Simply put, an ADT (Abstract Data Type) is a logical description, while a data structure is a concrete implementation of an ADT.
+Data structure is a named location that can be used to store and organize data. Simply put, an ADT (Abstract Data Type) is a logical description, 
+while a data structure is a concrete implementation of an ADT.
 _______________________________________________________________________________________
 
 
@@ -127,13 +128,15 @@ Traversered sequentially with a single run.
 ARRAYS
 ------
 
-STORAGE VS. MEMORY. Data in storage is permanent, while data in memory (RAM) is temporary. Both are used because retrieving data from storage is slower than from memory.
+STORAGE VS. MEMORY. Data in storage is permanent, while data in memory (RAM) is temporary. Both are used because retrieving data from storage is slower 
+than from memory.
 
 Each integer is typically represented by 32 bits or, in some environments, 64 bits.
 
 Memory is a sequence of bytes (8 bits), which can be thought of as compartments. Each compartment has an address represented by an integer.
 
-You can't just allocate more memory to the existing array. If you do that, the new array has to be created with your added elements, the rest will be copied one by one DYNAMICALLY.
+You can't just allocate more memory to the existing array. If you do that, the new array has to be created with your added elements, the rest will be 
+copied one by one DYNAMICALLY.
 
 
 
@@ -144,15 +147,21 @@ STACKS
 
 As plates. Or pancakes. Add to the top only. Retrieve from the top only.
 
-This follows the Last-In, First-Out (LIFO) principle. Stacks can be implemented using an array with a pointer pointing to the last element. When pushing an element onto the stack, the pointer is incremented by 1, and when popping an element, the pointer is decremented by 1.
+This follows the Last-In, First-Out (LIFO) principle. Stacks can be implemented using an array with a pointer pointing to the last element. When pushing 
+an element onto the stack, the pointer is incremented by 1, and when popping an element, the pointer is decremented by 1.
 
-You can implement the push operation using various approaches, such as inserting at the 0th index, which has an O(n) time complexity, or inserting at the -1 index, or simply using the .append method. In the last approach, elements are popped and added/inserted at the last index (-1), because the top of the stack is at the end of the array (i.e., a list).
+You can implement the push operation using various approaches, such as inserting at the 0th index, which has an O(n) time complexity, or inserting at the -1 index, 
+or simply using the .append method. In the last approach, elements are popped and added/inserted at the last index (-1), because the top of the stack is at the 
+end of the array (i.e., a list).
 
-.append is an amortized O(1). Inserting at the 0th index of a list requires shifting every other element, making it an O(n) operation. However, if you use a deque, this operation is O(1). .append is an amortized O(1) operation since it simply requires adding the item onto the end of the list and no shifting is done. Sometimes the list needs to grow, so it is not always an O(1) operation.
+.append is an amortized O(1). Inserting at the 0th index of a list requires shifting every other element, making it an O(n) operation. However, if you use a deque,
+this operation is O(1). .append is an amortized O(1) operation since it simply requires adding the item onto the end of the list and no shifting is done. Sometimes 
+the list needs to grow, so it is not always an O(1) operation.
 
 It is O(1) to pop the last element of a Python list, and O(n) to pop an arbitrary element (since the rest of the list has to be shifted).
 
-Stacks can be used to reverse a string, following the LIFO or FILO principle. They are also used in expression evaluation, expression conversion, and the Tower of Hanoi algorithm.
+Stacks can be used to reverse a string, following the LIFO or FILO principle. They are also used in expression evaluation, expression conversion, and the 
+Tower of Hanoi algorithm.
 
 Stack operations:
 
@@ -289,7 +298,10 @@ POSSIBLE CONCEPT
 
 For a string of length n, you can have at most n-1 objects. In this case, dequeue and enqueue operations are O(1).
 
-Two pointers are used. The queue is considered empty only when both pointers are at the same index. Initially, both pointers are at the same index. The left pointer points to the front of the queue, and the right pointer points to the back, but its index is len(n), which is beyond the last element. In this interpretation, the push/add method is equivalent to inserting an element at the end of the list (index -1). Therefore, the end of the list represents the end of the queue.
+Two pointers are used. The queue is considered empty only when both pointers are at the same index. Initially, both pointers are at the same index. 
+The left pointer points to the front of the queue, and the right pointer points to the back, but its index is len(n), which is beyond the last element. 
+In this interpretation, the push/add method is equivalent to inserting an element at the end of the list (index -1). Therefore, the end of the list 
+represents the end of the queue.
 
 In this case, dequeue is simply moving the left pointer one step to the right. The queue is only between the pointers.
 
@@ -300,15 +312,18 @@ If you run out of space, you can concatenate the list and move the right pointer
 
 DEQUE
 
-In a queue, you add an element to the end and remove it from the beginning, while in a deque, you can add and remove elements from both the beginning and the end of the queue (e.g., someone resigns because they have been waiting too long).
+In a queue, you add an element to the end and remove it from the beginning, while in a deque, you can add and remove elements from both the beginning 
+and the end of the queue (e.g., someone resigns because they have been waiting too long).
 
-Circular implementation is used in deque. The difference is in the pointer movements; in addition to remove_left and add_right, there are remove_right and add_left operations (someone pushes to the front of the queue, meaning insert at index 0). Similar to the previous implementation, all operations are O(1).
+Circular implementation is used in deque. The difference is in the pointer movements; in addition to remove_left and add_right, there are remove_right 
+and add_left operations (someone pushes to the front of the queue, meaning insert at index 0). Similar to the previous implementation, all operations are O(1).
 
 
 
 PRIORITY QUEUE
 
-A priority queue is used when elements with higher priority need to be processed before elements with lower priority, like a person with a critical condition being prioritized.
+A priority queue is used when elements with higher priority need to be processed before elements with lower priority, like a person with a critical 
+condition being prioritized.
 
 Priority can be determined by the content (using the < relation) or as a tuple. You can also use heapq.
 
@@ -332,11 +347,6 @@ q.append((2, 'al'))
 print(q)  # [(1, 'alexa'), (4, 'alex'), (2, 'al')]
 q.sort(reverse=True)
 print(q)  # [(4, 'alex'), (2, 'al'), (1, 'alexa')]
-
-
-
-
-
 
 
 
