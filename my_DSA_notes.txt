@@ -112,8 +112,7 @@ is a linked list. Every heap is a specialized tree (binary or otherwise), but no
 _______________________________________________________________________________________________________
 
 
-Data structure is a named location that can be used to store and organize data. Simply put, an ADT (Abstract Data Type) is a logical description, 
-while a data structure is a concrete implementation of an ADT.
+Data structure is a named location that can be used to store and organize data. Simply put, an ADT (Abstract Data Type) is a logical description, while a data structure is a concrete implementation of an ADT.
 _______________________________________________________________________________________
 
 
@@ -128,15 +127,13 @@ Traversered sequentially with a single run.
 ARRAYS
 ------
 
-STORAGE VS. MEMORY. Data in storage is permanent, while data in memory (RAM) is temporary. Both are used because retrieving data from storage is slower 
-than from memory.
+STORAGE VS. MEMORY. Data in storage is permanent, while data in memory (RAM) is temporary. Both are used because retrieving data from storage is slower than from memory.
 
 Each integer is typically represented by 32 bits or, in some environments, 64 bits.
 
 Memory is a sequence of bytes (8 bits), which can be thought of as compartments. Each compartment has an address represented by an integer.
 
-You can't just allocate more memory to the existing array. If you do that, the new array has to be created with your added elements, the rest will be 
-copied one by one DYNAMICALLY.
+You can't just allocate more memory to the existing array. If you do that, the new array has to be created with your added elements, the rest will be copied one by one DYNAMICALLY.
 
 
 
@@ -147,21 +144,15 @@ STACKS
 
 As plates. Or pancakes. Add to the top only. Retrieve from the top only.
 
-This follows the Last-In, First-Out (LIFO) principle. Stacks can be implemented using an array with a pointer pointing to the last element. When pushing 
-an element onto the stack, the pointer is incremented by 1, and when popping an element, the pointer is decremented by 1.
+This follows the Last-In, First-Out (LIFO) principle. Stacks can be implemented using an array with a pointer pointing to the last element. When pushing an element onto the stack, the pointer is incremented by 1, and when popping an element, the pointer is decremented by 1.
 
-You can implement the push operation using various approaches, such as inserting at the 0th index, which has an O(n) time complexity, or inserting at the -1 index, 
-or simply using the .append method. In the last approach, elements are popped and added/inserted at the last index (-1), because the top of the stack is at the 
-end of the array (i.e., a list).
+You can implement the push operation using various approaches, such as inserting at the 0th index, which has an O(n) time complexity, or inserting at the -1 index, or simply using the .append method. In the last approach, elements are popped and added/inserted at the last index (-1), because the top of the stack is at the end of the array (i.e., a list).
 
-.append is an amortized O(1). Inserting at the 0th index of a list requires shifting every other element, making it an O(n) operation. However, if you use a deque,
-this operation is O(1). .append is an amortized O(1) operation since it simply requires adding the item onto the end of the list and no shifting is done. Sometimes 
-the list needs to grow, so it is not always an O(1) operation.
+.append is an amortized O(1). Inserting at the 0th index of a list requires shifting every other element, making it an O(n) operation. However, if you use a deque, this operation is O(1). .append is an amortized O(1) operation since it simply requires adding the item onto the end of the list and no shifting is done. Sometimes the list needs to grow, so it is not always an O(1) operation.
 
 It is O(1) to pop the last element of a Python list, and O(n) to pop an arbitrary element (since the rest of the list has to be shifted).
 
-Stacks can be used to reverse a string, following the LIFO or FILO principle. They are also used in expression evaluation, expression conversion, and the 
-Tower of Hanoi algorithm.
+Stacks can be used to reverse a string, following the LIFO or FILO principle. They are also used in expression evaluation, expression conversion, and the Tower of Hanoi algorithm.
 
 Stack operations:
 
@@ -298,10 +289,7 @@ POSSIBLE CONCEPT
 
 For a string of length n, you can have at most n-1 objects. In this case, dequeue and enqueue operations are O(1).
 
-Two pointers are used. The queue is considered empty only when both pointers are at the same index. Initially, both pointers are at the same index. 
-The left pointer points to the front of the queue, and the right pointer points to the back, but its index is len(n), which is beyond the last element. 
-In this interpretation, the push/add method is equivalent to inserting an element at the end of the list (index -1). Therefore, the end of the list 
-represents the end of the queue.
+Two pointers are used. The queue is considered empty only when both pointers are at the same index. Initially, both pointers are at the same index. The left pointer points to the front of the queue, and the right pointer points to the back, but its index is len(n), which is beyond the last element. In this interpretation, the push/add method is equivalent to inserting an element at the end of the list (index -1). Therefore, the end of the list represents the end of the queue.
 
 In this case, dequeue is simply moving the left pointer one step to the right. The queue is only between the pointers.
 
@@ -312,18 +300,15 @@ If you run out of space, you can concatenate the list and move the right pointer
 
 DEQUE
 
-In a queue, you add an element to the end and remove it from the beginning, while in a deque, you can add and remove elements from both the beginning 
-and the end of the queue (e.g., someone resigns because they have been waiting too long).
+In a queue, you add an element to the end and remove it from the beginning, while in a deque, you can add and remove elements from both the beginning and the end of the queue (e.g., someone resigns because they have been waiting too long).
 
-Circular implementation is used in deque. The difference is in the pointer movements; in addition to remove_left and add_right, there are remove_right 
-and add_left operations (someone pushes to the front of the queue, meaning insert at index 0). Similar to the previous implementation, all operations are O(1).
+Circular implementation is used in deque. The difference is in the pointer movements; in addition to remove_left and add_right, there are remove_right and add_left operations (someone pushes to the front of the queue, meaning insert at index 0). Similar to the previous implementation, all operations are O(1).
 
 
 
 PRIORITY QUEUE
 
-A priority queue is used when elements with higher priority need to be processed before elements with lower priority, like a person with a critical 
-condition being prioritized.
+A priority queue is used when elements with higher priority need to be processed before elements with lower priority, like a person with a critical condition being prioritized.
 
 Priority can be determined by the content (using the < relation) or as a tuple. You can also use heapq.
 
@@ -347,6 +332,11 @@ q.append((2, 'al'))
 print(q)  # [(1, 'alexa'), (4, 'alex'), (2, 'al')]
 q.sort(reverse=True)
 print(q)  # [(4, 'alex'), (2, 'al'), (1, 'alexa')]
+
+
+
+
+
 
 
 
@@ -417,7 +407,7 @@ class LinkedList:
 
     def add_before(self, new_data, id_data):
         if self.head is None:
-            orint("The list is empty.")
+            print("The list is empty.")
 
         if self.head.data == id_data:
             new_node = Node(data)
@@ -431,9 +421,10 @@ class LinkedList:
             n = n.ref
         if n.ref is None:
             print("Node is not found")
-        new_node = Node(new_data)
-        new_node.ref = n.ref
-        n.ref = new_node
+        else:
+            new_node = Node(new_data)
+            new_node.ref = n.ref
+            n.ref = new_node
 
     def insert_empty(self, new_data):
         if self.head is None:
@@ -501,6 +492,196 @@ ll1.print_ll()
 
 
 
+# Doubly linked list.
+
+
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.pref = None
+        self.nref = None
+
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def print_forward(self):
+        if self.head is None:
+            print('This list is empty.')
+        else:
+            n = self.head
+            while n is not None:
+                print(n.data, '-->>', end=' ')
+                n = n.nref
+            print()
+
+    def print_backward(self):
+        if self.head is None:
+            print('This list is empty.')
+        else:
+            n = self.head
+            while n.nref is not None:
+                n = n.nref
+            while n is not None:
+                print(n.data, '-->>', end=' ')
+                n = n.pref
+            print()
+
+    def print_backwards_tail(self):
+        if self.head is None:
+            print('This list is empty.')
+        else:
+            n = self.tail
+            while n is not None:
+                print(n.data, '-->>', end=' ')
+                n = n.pref
+            print()
+
+    def insert_empty(self, new_data):
+        if self.head is None:
+            new_node = Node(new_data)
+            self.head = new_node
+        else:
+            print('This list is not empty!')
+
+    def add_begin(self, new_data):
+        new_node = Node(new_data)
+        if self.head is None:
+            self.head = new_node
+        else:
+            new_node.nref = self.head
+            self.head.pref = new_node
+            self.head = new_node
+
+    def add_end(self, new_data):
+        new_node = Node(new_data)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            n = self.head
+            while n.nref is not None:
+                n = n.nref
+            n.nref = new_node
+            new_node.pref = n
+            self.tail = new_node
+
+    def add_after(self, new_data, id_data):
+        if self.head is None:
+            print('Empty list, cannot insert after.')
+        else:
+            n = self.head
+            while n is not None:
+                if n.data == id_data:
+                    break
+                n = n.nref  # corrected from n.ref
+            if n is None:
+                print('The node is not present in the list')
+            else:
+                new_node = Node(new_data)
+                new_node.pref = n
+                new_node.nref = n.nref
+                if n.nref is not None:
+                    n.nref.pref = new_node
+                n.nref = new_node
+
+    def add_before(self, new_data, id_data):
+        if self.head is None:
+            print('Empty list, cannot insert before.')
+        else:
+            n = self.head
+            while n is not None:
+                if n.data == id_data:
+                    break
+                n = n.nref
+            if n is None:
+                print('The node is not present in the list.')
+            else:
+                new_node = Node(new_data)
+                new_node.nref = n
+                new_node.pref = n.pref
+                if n.pref is None:
+                    self.head = new_node
+                else:
+                    n.pref.nref = new_node
+                n.pref = new_node  # This must be at the end, otherwise the if condition will never be met.
+
+    def delete_begin(self):
+        if self.head is None:
+            print('List is empty. Cannot delete the beginning.')
+        elif self.head.nref is None:
+            self.head = None
+        else:
+            self.head = self.head.nref
+            self.head.pref = None
+
+    def delete_end(self):
+        if self.head is None:
+            print('List is empty. Cannot delete the end.')
+        elif self.head.nref is None:
+            self.head = None
+            self.tail = None
+        else:
+            n = self.head
+            while n.nref is not None:
+                n = n.nref
+            n.pref.nref = None
+            self.tail = n.pref
+
+    def delete_by_value(self, id_data):
+        if self.head is None:
+            print("This list is empty. Cannot delete.")
+        elif self.head.nref is None:
+            if self.head.data == id_data:
+                self.head = None
+            else:
+                print('The node is not present!')
+        elif self.head.data == id_data:
+            self.head = self.head.nref
+            self.head.pref = None
+        else:
+            n = self.head
+            while n.nref is not None:
+                if n.data == id_data:
+                    break
+                n = n.nref
+            if n.nref is not None:  # If we pointed at the middle.
+                n.nref.pref = n.pref
+                n.pref.nref = n.nref  # This must be executed, and it won't be if
+
+            # n.pref == None (equivalent with self.head.data == id_data). Thus, there should exists a block of
+            # elif self.head.data == id_data, and then the else block, in order to prevent the None.nref.
+
+            # The while loop after n.nref checks n, but it won't execute if n.nref = None (if n is the last element),
+            # thus it will stop, leaving n as the last, unchecked element. Therefore, we should provide a condition 
+            # in which you can delete the last element of the list after you have checked this element.
+
+            else:  # If n, then the last element of the list.
+                if n.data == id_data:
+                    n.pref.nref = None
+                else:
+                    print('Your node is not in the list. Cannot delete.')
+
+
+doubly = DoublyLinkedList()
+doubly.insert_empty('00')
+doubly.add_begin(9999)
+doubly.add_end('TP')
+doubly.add_after('Jeo', 9999)
+doubly.print_forward()
+doubly.delete_by_value('TP')
+doubly.print_forward()
+doubly.delete_by_value('00')
+doubly.print_forward()
+doubly.delete_by_value(9999)
+doubly.print_forward()
+doubly.delete_by_value('Jw')
+doubly.print_forward()
+doubly.print_forward()
 
 
 
