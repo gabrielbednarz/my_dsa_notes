@@ -740,4 +740,22 @@ clist.print_list()
 
 
 
+Each node is an object and each link is a reference or pointer. Linked list is a type of data structure that can be considered as a simpler version 
+of a tree (single branch). In a doubly-linked list, each node contains an additional reference to the previous node, allowing traversal in both directions.
+
+If you need to frequently add or remove elements at the start or end of a list, a linked list can be a suitable choice due to their efficient operations 
+at these ends.
+
+In a singly linked list, you can add elements at both ends in O(1) time complexity if the tail is tracked. Removing the first element can also be done 
+in constant time. However, removing the last element requires O(N) time, as you must traverse the entire list.
+
+In a doubly linked list, adding or removing elements at both ends can be done in constant time, given that you keep track of both the head and tail 
+of the list. This is because a doubly-linked list allows traversal in both directions.
+
+However, indexing (accessing an item in a list) in linked lists is relatively inefficient. To find an element at a given index, you may need to traverse 
+the list from the head node, which takes O(N) time in the worst case.
+
+Nodes in a linked list consist of two parts: data and a reference or pointer to the next node (and the previous node in case of a doubly linked list). 
+Nodes are stored in non-consecutive memory locations (unlike in the case of built-in lists) and are linked together using these pointers.
+
 
